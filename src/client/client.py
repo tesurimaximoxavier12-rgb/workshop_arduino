@@ -2,10 +2,9 @@ import serial
 import serial.tools.list_ports
 import requests
 import time
-import sys
 
 # === CONFIGURACIÓN ===
-SERVER_IP = "172.22.142.36"  # Tu IP de Manjaro
+SERVER_IP = "172.22.142.36"
 PORT = 8000
 URL = f"http://{SERVER_IP}:{PORT}/update"
 BAUD_RATE = 9600
@@ -32,6 +31,14 @@ def seleccionar_puerto():
         except ValueError:
             print(" [?] Ingresá un número.")
 
+def parsear_linea(linea):
+    datos = {}
+    for par in linea.split(','):
+        if ':' in par:
+            k, v = par.split(':', 1)
+            datos[k.strip()] = v.strip()
+    return datos
+
 def main():
     try:
         print("==========================================")
@@ -55,24 +62,32 @@ def main():
             if ser.in_waiting > 0:
                 linea = ser.readline().decode('utf-8', errors='ignore').strip()
                 if linea:
-                    # Formato simple: enviar lo que venga
-                    payload = {"group_name": grupo, "data": {"raw": linea}}
-                    try:
-                        requests.post(URL, json=payload, timeout=0.5)
-                        print(f" [OK] Enviado: {linea}")
-                    except:
-                        print(" [!] Error de red: El servidor no responde.")
+                    datos = parsear_linea(linea)
+                    
+                    if datos:
+                        payload = {"group_name": grupo, "data": datos}
+                        try:
+                            requests.post(URL, json=payload, timeout=0.5)
+                            print(f" [OK] {datos}")
+                        except:
+                            print(" [!] Error de red: El servidor no responde.")
+                    else:
+                        print(f" [?] Línea no parseable: {linea}")
+
             time.sleep(0.01)
 
     except serial.SerialException as e:
         print(f"\n[ERROR DE PUERTO] {e}")
         print("CAUSA: El puerto está siendo usado por el Arduino IDE o está mal conectado.")
+    except KeyboardInterrupt:
+        print("\n[*] Saliendo...")
     except Exception as e:
         print(f"\n[ERROR CRÍTICO] {e}")
     finally:
         print("\n" + "="*40)
         input("EL PROGRAMA TERMINÓ. Presioná ENTER para cerrar esta ventana...")
-        if 'ser' in locals() and ser.is_open: ser.close()
+        if 'ser' in locals() and ser.is_open:
+            ser.close()
 
 if __name__ == "__main__":
     main()
