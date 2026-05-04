@@ -5,7 +5,7 @@ import time
 import sys
 
 # === CONFIGURACIÓN ===
-SERVER_IP = "192.168.1.100"  # <--- CAMBIAR POR LA IP DE TU MANJARO
+SERVER_IP = "172.22.142.36"  # <--- CAMBIAR POR LA IP DE TU MANJARO
 PORT = 8000
 URL = f"http://{SERVER_IP}:{PORT}/update"
 BAUD_RATE = 9600

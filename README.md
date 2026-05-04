@@ -1,11 +1,4 @@
 
-### 🛠️ Configuración de Red
-1. **IP Estática:** Asegurate de conocer la IP de tu PC Manjaro en la red LAN (usá `ip addr`).
-2. **Firewall:** Permití el tráfico en el puerto 8000 para que las Raspberry se puedan conectar:
-   ```bash
-   sudo ufw allow 8000/tcp
-   ```
-
 ### 🚀 Ejecución del Server
 1. Guardá el código del servidor como `server.py`.
 2. Ejecutalo desde la terminal:
