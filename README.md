@@ -1,14 +1,4 @@
 
-### 🚀 Ejecución del Server
-1. Guardá el código del servidor como `server.py`.
-2. Ejecutalo desde la terminal:
-   ```bash
-   python server.py
-   ```
-3. El servidor estará escuchando en `http://0.0.0.0¡Claro! Acá tenés un archivo **README.md** completito y bien organizado para que se los pases a los chicos (clientes) y para que lo tengas vos de referencia para el server.
-
----
-
 # 🚀 Workshop: Sistema de Telemetría en Tiempo Real
 
 Este proyecto permite recolectar datos de sensores desde un **Arduino**, enviarlos a través de una **Raspberry Pi** (o PC) y visualizarlos en un **Dashboard Profesional** centralizado en una red LAN.
