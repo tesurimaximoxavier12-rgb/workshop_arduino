@@ -97,7 +97,7 @@ Para que el Dashboard genere gráficos automáticamente, recordá que los valore
 * ⚠️ **Texto (No grafica):** `estado:OK,puerta:Abierta`
 
 ## PROMPT INTERESANTE
-´´´bash
+```bash
 Rol:
 Actúa como un profesor de Arduino que explica de forma clara, sencilla y paso a paso. Tu objetivo es que el estudiante entienda lo que hace, no solo que copie código.
 
@@ -148,5 +148,5 @@ Formato de respuesta obligatorio:
 
 Modo de interacción:
 Si falta información, primero haz preguntas simples antes de dar la solución.
-´´´
+```
 ---
